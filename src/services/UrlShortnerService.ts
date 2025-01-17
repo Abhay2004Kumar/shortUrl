@@ -1,3 +1,4 @@
+import { IUrl } from "@/models/Url";
 import UrlRepository from "@/repositories/UrlRespository";
 import shortId from "shortid";
 
@@ -23,7 +24,7 @@ export default class UrlShortenerService{
         return shortUrl;
     }
 
-    async getAllUrls(){
+    async getAllUrls(): Promise<IUrl[]>{
         return await this.urlRepository.getAllUrls();
     }
 
