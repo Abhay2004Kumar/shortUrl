@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 async function fetchUrls() {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/urls`,{
         cache: 'force-cache'
@@ -34,6 +36,7 @@ export default async function UrlList() {
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
             <div className="p-10 bg-white rounded-lg shadow-2xl max-w-4xl w-full">
                 <h1 className="text-3xl font-bold mb-6 text-center text-gray-700">All Short Urls</h1>
+                <Link href="/" className="text-gray-800">Go to Home</Link>
                 <div className="overflow-x-auto">
                     <table className="table table-zebra w-full">
                         <thead>
@@ -47,7 +50,7 @@ export default async function UrlList() {
                             </tr>
                         </thead>
                         <tbody>
-                            {urls.urls.map((url: {_id:string, originalUrl: string, shortUrl: string})=>{
+                            {urls.urls && urls.urls.map((url: {_id:string, originalUrl: string, shortUrl: string})=>{
                                 return (
                                     <tr key={url._id}>
                                         <td>{url.originalUrl}</td>
